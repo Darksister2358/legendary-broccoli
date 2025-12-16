@@ -57,7 +57,7 @@ export default function LoginPage() {
                         <input
                             type={showPassword ? "text" : "password"}
                             placeholder="Password" required
-                            className="w-full border rounded px-3 py-2 text-black"
+                            className="w-full border rounded px-3 py-2 pr-10 text-black"
                             value={password}
                             onChange={(e) => setPassword(e.target.value)}
                         />
@@ -66,7 +66,7 @@ export default function LoginPage() {
                             type="button"
                             disabled={loading}
                             onClick={() => setShowPassword((prev) => !prev)}
-                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-black"
+                            className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 hover:text-black"
                             aria-label={showPassword ? "Hide password" : "Show password"}
                             >
                             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
