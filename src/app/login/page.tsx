@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { createBrowserClient } from "@supabase/ssr";
+import { Eye, EyeOff } from "lucide-react";
 
 export default function LoginPage() {
     const router = useRouter();
@@ -15,6 +16,7 @@ export default function LoginPage() {
     const [password, setPassword] = useState("");
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+    const [showPassword, setShowPassword] = useState(false);
 
     const handleLogin = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -51,22 +53,26 @@ export default function LoginPage() {
                         onChange={(e) => setEmail(e.target.value)}
                     />
 
-                    <input
-                      type="password"
-                      placeholder="Password" required
-                      className="w-full border rounded px-3 py-2 text-black"
-                      value={password}
-                      onChange={(e) => setPassword(e.target.value)}
-                      />
+                    <div className="relative">
+                        <input
+                            type={showPassword ? "text" : "password"}
+                            placeholder="Password" required
+                            className="w-full border rounded px-3 py-2 text-black"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                        />
 
-                      <button
-                      type="submit"
-                      disabled={loading}
-                      className="w-full bg-blue-600 text-white py-2 rounded hover:bg-blue-700 transition"
-                      >
-
-                      {loading ? "Logging in..." : "Log In"}
-                      </button>  
+                        <button
+                            type="button"
+                            disabled={loading}
+                            onClick={() => setShowPassword((prev) => !prev)}
+                            className="absolute right-3 top-1/2 transform -translate-y-1/2 text-gray-500 hover:text-black"
+                            aria-label={showPassword ? "Hide password" : "Show password"}
+                            >
+                            {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                            {loading ? "Logging in..." : "Log In"}
+                        </button>
+                    </div>
                 </form>
 
                 {error && (
