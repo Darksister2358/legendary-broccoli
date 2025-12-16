@@ -64,12 +64,20 @@ export default function LoginPage() {
 
                         <button
                             type="button"
-                            disabled={loading}
                             onClick={() => setShowPassword((prev) => !prev)}
                             className="absolute inset-y-0 right-0 flex items-center px-3 text-gray-500 hover:text-black"
                             aria-label={showPassword ? "Hide password" : "Show password"}
                             >
                             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
+                        </button>
+
+                        <button
+                            type="submit"
+                            disabled={loading}
+                            className="w-full bg-blue-600 text-white py02 rounded 
+                            hover:bg-blue-700 transition disabled:opacity-50"
+                            >
+                            {loading ? "Logging in..." : "Log In"}
                         </button>
                     </div>
                 </form>
