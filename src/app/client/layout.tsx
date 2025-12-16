@@ -3,6 +3,7 @@ import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
 import { Analytics } from "@vercel/analytics/next"
 import  ClientSidebar from "@/components/ClientSidebar";
+import MobileSidebar from "@/components/MobileSidebar";
 
 export default async function PortalLayout({
     children,
@@ -30,9 +31,12 @@ export default async function PortalLayout({
     return (
         <div className="min-h-screen flex bg-gray-100 text-black">
             <div className="flex-1 overflow-y-auto">
+                <MobileSidebar />
                 {children}
             </div>
-            <ClientSidebar />
+            <div className="hidden md:block">
+                <ClientSidebar />
+            </div>
             <Analytics />
         </div>
     )

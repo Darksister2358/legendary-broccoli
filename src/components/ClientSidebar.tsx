@@ -42,7 +42,11 @@ const navItems = [
     },
 ];
 
-export default function ClientSidebar() {
+export default function ClientSidebar({
+    onNavigate,
+}: {
+    onNavigate?: () => void;
+}) {
     const pathname = usePathname();
 
     return (
@@ -60,6 +64,7 @@ export default function ClientSidebar() {
                         <Link
                             key={item.href}
                             href={item.href}
+                            onClick={onNavigate}
                             className={`flex items-center gap-3 rounded-lg px-4 py-3 text-sm transition
                                 ${isActive ? "bg-blue-50 text-blue-600 font-semibold border-r-4 border-blue-600" 
                                     : "text-gray-600 hover:bg-gray-100"}`}
