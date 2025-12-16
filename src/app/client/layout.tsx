@@ -1,6 +1,7 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
 import { createServerClient } from "@supabase/ssr";
+import { Analytics } from "@vercel/analytics/next"
 
 export default async function PortalLayout({
     children,
@@ -28,6 +29,7 @@ export default async function PortalLayout({
     return (
         <div className="min-h-screen bg-gray-400 text-black">
             {children}
+            <Analytics />
         </div>
     )
 }
