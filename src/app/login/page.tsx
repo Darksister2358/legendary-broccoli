@@ -70,7 +70,6 @@ export default function LoginPage() {
                             aria-label={showPassword ? "Hide password" : "Show password"}
                             >
                             {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
-                            {loading ? "Logging in..." : "Log In"}
                         </button>
                     </div>
                 </form>
