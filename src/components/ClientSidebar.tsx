@@ -7,6 +7,7 @@ import {
     Package,
     BookUser,
     Settings,
+    Inbox,
     HelpCircle,
 } from "lucide-react";
 
@@ -33,6 +34,12 @@ const navItems = [
         label: "Settings",
         href: "/cleint/settings",
         icon: Settings,
+    },
+
+    {
+        label: "My inbox",
+        href: "/client/inbox",
+        icon: Inbox,
     },
 
     {
