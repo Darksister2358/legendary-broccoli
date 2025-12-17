@@ -32,13 +32,13 @@ const navItems = [
 
     {
         label: "Settings",
-        href: "/cleint/settings",
+        href: "/client/settings",
         icon: Settings,
     },
 
     {
         label: "My inbox",
-        href: "/client/inbox",
+        href: "/inbox",
         icon: Inbox,
     },
 
