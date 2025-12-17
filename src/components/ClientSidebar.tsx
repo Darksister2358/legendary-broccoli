@@ -38,7 +38,7 @@ const navItems = [
 
     {
         label: "My inbox",
-        href: "/inbox",
+        href: "/client/inbox",
         icon: Inbox,
     },
 
