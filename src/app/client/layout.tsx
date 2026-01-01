@@ -22,12 +22,22 @@ export default async function PortalLayout({
             },
         }
     )
-
+    
     const { data: { session } } = await supabase.auth.getSession();
     if (!session) {
         redirect('/login')
     }
 
+    const { data: profile } = await supabase
+        .from("profiles")
+        .select("onboarding_complete")
+        .eq("id", session.user.id)
+        .single();
+
+    if (!profile || !profile.onboarding_complete){
+        redirect('/client/onboarding');
+    }
+    
     return (
         <div className="min-h-screen flex bg-gray-100 text-black">
             <div className="flex-1 overflow-y-auto">

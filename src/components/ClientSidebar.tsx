@@ -143,8 +143,8 @@ function LogoutButton() {
             onClick={handleLogout}
             className="flex w-full items-center gap-3 rounded-lg px-4 py-3 text-sm text-red-600 
             hover:bg-red-50 transition">
-                <LogOut className="w-5 h-5"/>
-                Log out
-            </button>
+            <LogOut className="w-5 h-5"/>
+            Log out
+        </button>
     )
 }
