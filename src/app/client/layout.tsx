@@ -28,11 +28,19 @@ export default async function PortalLayout({
         redirect('/login')
     }
 
-    const { data: profile } = await supabase
+    const { data: profile, error } = await supabase
         .from("profiles")
         .select("onboarding_complete")
         .eq("id", session.user.id)
         .single();
+
+    if (error && error.code !== 'PGRST116') {
+        throw error;
+    }
+
+    if (!profile){
+        redirect('/client/onboarding');
+    }
 
     if (!profile || !profile.onboarding_complete){
         redirect('/client/onboarding');
