@@ -30,7 +30,7 @@ export default async function PortalLayout({
 
     const { data: profile, error: profileError } = await supabase
         .from("profiles")
-        .select("onboarding_complete")
+        .select("*")
         .eq("id", user.id)
         .single();
 
