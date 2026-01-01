@@ -23,26 +23,22 @@ export default async function PortalLayout({
         }
     )
     
-    const { data: { session } } = await supabase.auth.getSession();
-    if (!session) {
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    if (!user || userError) {
         redirect('/login')
     }
 
-    const { data: profile, error } = await supabase
+    const { data: profile, error: profileError } = await supabase
         .from("profiles")
         .select("onboarding_complete")
-        .eq("id", session.user.id)
+        .eq("id", user.id)
         .single();
 
-    if (error && error.code !== 'PGRST116') {
-        throw error;
+    if (profileError) {
+        throw new Error("Failed to load profile");
     }
 
-    if (!profile){
-        redirect('/client/onboarding');
-    }
-
-    if (!profile || !profile.onboarding_complete){
+    if (!profile.onboarding_complete){
         redirect('/client/onboarding');
     }
     
