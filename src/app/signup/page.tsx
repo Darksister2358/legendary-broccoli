@@ -38,11 +38,6 @@ export default function SignupPage() {
     setLoading(false);
 
     setSuccess(true);
-    
-    await supabase.from("profiles").insert({
-      id: user.user?.id,
-      onboarding_complete: false
-    });
   };
 
   return (
