@@ -61,7 +61,7 @@ export default function OnboardingPage() {
         }
 
         const { error: addressError } = await supabase
-            .from("addresses")
+            .from("address_book")
             .insert({
                 user_id: user.id,
                 line1: form.line1,
