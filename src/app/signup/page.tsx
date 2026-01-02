@@ -32,12 +32,36 @@ export default function SignupPage() {
 
     if (signUpError){
       setError(signUpError.message);
+      setLoading(false);
       return
     }
 
-    setLoading(false);
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+
+    if (!user || userError) {
+      setError("Failed to create user.");
+      setLoading(false);
+      return;
+    }
+
+    const { error: profileError } = await supabase
+      .from("profiles")
+      .insert({
+        id: user.id,
+        onboarding_complete: false,
+        first_name: "",
+        last_name: "",
+        phone_number: "",
+      });
+
+      if (profileError) {
+        setError(profileError.message);
+        setLoading(false);
+        return;
+      }
 
     setSuccess(true);
+    setLoading(false);
   };
 
   return (
