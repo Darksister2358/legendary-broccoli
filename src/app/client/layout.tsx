@@ -35,15 +35,10 @@ export default async function PortalLayout({
         .maybeSingle();
 
     if (profileError) {
-        console.error("Failed to load profile");
-        redirect('/login');
+        throw new Error("Failed to load profile");
     }
 
-    if (!profile) {
-        redirect('/onboarding');
-    }
-
-    if (!profile.onboarding_complete) {
+    if (!profile.onboarding_complete || !profile.onboarding_complete) {
         redirect('/onboarding');
     }
     
