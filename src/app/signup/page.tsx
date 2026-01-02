@@ -51,7 +51,7 @@ export default function SignupPage() {
         onboarding_complete: false,
         first_name: "",
         last_name: "",
-        phone_number: "",
+        phone: "",
       });
 
       if (profileError) {
