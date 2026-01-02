@@ -48,6 +48,7 @@ export default function SignupPage() {
       .from("profiles")
       .insert({
         id: user.id,
+        role: "client",
         onboarding_complete: false,
         first_name: "",
         last_name: "",
