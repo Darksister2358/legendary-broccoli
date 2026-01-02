@@ -69,7 +69,7 @@ export default function OnboardingPage() {
                 province: form.province,
                 postal_code: form.postal_code,
                 country: form.country,
-                is_promary: true,
+                is_primary: true,
             });
 
         if (addressError) {
