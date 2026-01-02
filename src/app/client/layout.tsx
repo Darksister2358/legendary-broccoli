@@ -32,13 +32,13 @@ export default async function PortalLayout({
         .from("profiles")
         .select("*")
         .eq("id", user.id)
-        .single();
+        .maybeSingle();
 
     if (profileError) {
         throw new Error("Failed to load profile");
     }
 
-    if (!profile.onboarding_complete){
+    if (!profile.onboarding_complete || profile.onboarding_complete) {
         redirect('/onboarding');
     }
     
