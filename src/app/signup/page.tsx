@@ -46,7 +46,7 @@ export default function SignupPage() {
 
     const { error: profileError } = await supabase
       .from("profiles")
-      .insert({
+      .upsert({
         id: user.id,
         role: "client",
         onboarding_complete: false,
