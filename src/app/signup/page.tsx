@@ -41,10 +41,7 @@ export default function SignupPage() {
     
     await supabase.from("profiles").insert({
       id: user.user?.id,
-      onboarding_complete: false,
-      first_name: "",
-      last_name: "",
-      phone_number: "",
+      onboarding_complete: false
     });
   };
 
