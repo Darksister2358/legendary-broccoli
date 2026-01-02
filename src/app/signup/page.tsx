@@ -22,7 +22,7 @@ export default function SignupPage() {
     setLoading(true);
     setError(null);
 
-    const { data: user, error: signUpError } = await supabase.auth.signUp({
+    const { error: signUpError } = await supabase.auth.signUp({
       email,
       password,
       options: {
