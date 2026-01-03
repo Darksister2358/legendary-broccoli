@@ -36,31 +36,6 @@ export default function SignupPage() {
       return
     }
 
-    const { data: { user }, error: userError } = await supabase.auth.getUser();
-
-    if (!user || userError) {
-      setError("Failed to create user.");
-      setLoading(false);
-      return;
-    }
-
-    const { error: profileError } = await supabase
-      .from("profiles")
-      .upsert({
-        id: user.id,
-        role: "client",
-        onboarding_complete: false,
-        first_name: "",
-        last_name: "",
-        phone: "",
-      });
-
-      if (profileError) {
-        setError(profileError.message);
-        setLoading(false);
-        return;
-      }
-
     setSuccess(true);
     setLoading(false);
   };
