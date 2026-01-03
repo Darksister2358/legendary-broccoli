@@ -39,7 +39,7 @@ export default async function PortalLayout({
         redirect('/login');
     }
 
-    if (!profile) {
+    if (!profile.onboarding_complete) {
         redirect('/onboarding');
     }
     

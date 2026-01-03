@@ -79,7 +79,7 @@ export default function OnboardingPage() {
         }
 
         router.push("/client");
-        router.refresh();
+        // router.refresh();
     };
 
     return (
