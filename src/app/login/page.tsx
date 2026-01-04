@@ -22,6 +22,7 @@ export default function LoginPage() {
         e.preventDefault();
         setLoading(true);
         setError(null);
+        
         const { error } = await supabase.auth.signInWithPassword({
             email,
             password,
@@ -33,8 +34,29 @@ export default function LoginPage() {
             return
         }
 
+        const { data: { user }, error: userError } = await supabase.auth.getUser();
+        if (userError || !user) {
+            setError("Failed to retrieve user information.");
+            setLoading(false);
+            return;
+        }
+
+        const { error: profileError } = await supabase
+            .from("profiles")
+            .upsert({
+                id: user.id,
+                role: "client",
+                onboarding_complete: false,
+            }, { onConflict: "id" });
+
+        if (profileError) {
+            setError("Failed to create user profile.");
+            setLoading(false);
+            return;
+        }
+
         router.push("/client")
-        router.refresh()
+        // router.refresh()
     }
 
     return (
