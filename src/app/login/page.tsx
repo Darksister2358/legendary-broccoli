@@ -55,7 +55,7 @@ export default function LoginPage() {
             return;
         }
 
-        router.push("/client")
+        router.push("/onboarding")
         // router.refresh()
     }
 
