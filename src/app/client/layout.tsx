@@ -40,13 +40,11 @@ export default async function PortalLayout({
     }
 
     if (!profile) {
-        await supabase.from("profiles").upsert({
+        await supabase.from("profiles").insert({
             id: user.id,
             role: "client",
             onboarding_complete: false,
         });
-
-        redirect('/onboarding');
     }
 
     if (!profile.onboarding_complete) {
