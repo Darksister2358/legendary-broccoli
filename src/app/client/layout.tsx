@@ -23,33 +23,33 @@ export default async function PortalLayout({
         }
     )
     
-    // const { data: { user }, error: userError } = await supabase.auth.getUser();
-    // if (!user || userError) {
-    //     redirect('/login')
-    // }
+    const { data: { user }, error: userError } = await supabase.auth.getUser();
+    if (!user || userError) {
+        redirect('/login')
+    }
 
-    // const { data: profile, error: profileError } = await supabase
-    //     .from("profiles")
-    //     .select("*")
-    //     .eq("id", user.id)
-    //     .maybeSingle();
+    const { data: profile, error: profileError } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", user.id)
+        .maybeSingle();
 
-    // if (profileError) {
-    //     console.error("Failed to load profile");
-    //     redirect('/login');
-    // }
+    if (profileError) {
+        console.error("Failed to load profile");
+        redirect('/login');
+    }
 
-    // if (!profile) {
-    //     await supabase.from("profiles").insert({
-    //         id: user.id,
-    //         role: "client",
-    //         onboarding_complete: false,
-    //     });
-    // }
+    if (!profile) {
+        await supabase.from("profiles").insert({
+            id: user.id,
+            role: "client",
+            onboarding_complete: false,
+        });
+    }
 
-    // if (!profile.onboarding_complete) {
-    //     redirect('/onboarding');
-    // }
+    if (!profile.onboarding_complete) {
+        redirect('/onboarding');
+    }
     
     return (
         <div className="min-h-screen flex bg-gray-100 text-black">
