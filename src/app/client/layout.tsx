@@ -30,7 +30,7 @@ export default async function PortalLayout({
 
     const { data: profile, error: profileError } = await supabase
         .from("profiles")
-        .select("*")
+        .select("onboarding_complete")
         .eq("id", user.id)
         .maybeSingle();
 
@@ -39,9 +39,7 @@ export default async function PortalLayout({
         redirect('/login');
     }
 
-    if (!profile) redirect('/onboarding');
-
-    if (!profile.onboarding_complete) {
+    if (!profile ||!profile.onboarding_complete) {
         redirect('/onboarding');
     }
     
