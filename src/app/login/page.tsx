@@ -41,21 +41,21 @@ export default function LoginPage() {
             return;
         }
 
-        const { error: profileError } = await supabase
-            .from("profiles")
-            .upsert({
-                id: user.id,
-                role: "client",
-                onboarding_complete: false,
-            }, { onConflict: "id" });
+        // const { error: profileError } = await supabase
+        //     .from("profiles")
+        //     .upsert({
+        //         id: user.id,
+        //         role: "client",
+        //         onboarding_complete: false,
+        //     }, { onConflict: "id" });
 
-        if (profileError) {
-            setError("Failed to create user profile.");
-            setLoading(false);
-            return;
-        }
+        // if (profileError) {
+        //     setError("Failed to create user profile.");
+        //     setLoading(false);
+        //     return;
+        // }
 
-        router.push("/onboarding")
+        router.push("/client")
         // router.refresh()
     }
 
