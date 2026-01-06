@@ -23,7 +23,7 @@ const navItems = [
 
     {
         label: "Shipments",
-        href:"/client/shipments",
+        href:"/client/shipment",
         icon: Package,
     },
 
