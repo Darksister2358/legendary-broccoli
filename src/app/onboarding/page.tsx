@@ -44,6 +44,19 @@ export default function OnboardingPage() {
             return;
         }
 
+        const { data: profile } = await supabase
+            .from("profiles")
+            .select("id")
+            .eq("id", user.id)
+            .maybeSingle();
+
+        if (!profile) {
+            await supabase.from("profiles").insert({
+                id: user.id,
+                role: "client",
+            });
+        }
+
         const { error: profileError } = await supabase
             .from("profiles")
             .update({
