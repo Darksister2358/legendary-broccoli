@@ -29,7 +29,7 @@ const navItems = [
 
     {
         label: "Address Book",
-        href: "/client/address-book",
+        href: "/client/address",
         icon: BookUser,
     },
 
