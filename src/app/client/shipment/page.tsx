@@ -66,10 +66,18 @@ export default function ShipmentPage() {
     }, [supabase, waybill, status, fromDate, toDate]);
 
     return (
-        <div className="p-6">
-            <h1 className="text-2xl font-bold">Shipments</h1>
+        <div className="p-6 space-y-6">
+            <div>
+                <h1 className="text-2xl font-bold">Shipments</h1>
+
+                <button className="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 
+                transition"
+                onClick={() => alert("Open create shipment modal")}
+                >   Create Shipment
+                </button>
+            </div>
             
-            <div className="flex flex-wrap gap-4 mb-6">
+            <div className="flex flex-wrap gap-4 bg-white p-4 rounded-lg shadow">
                 <input
                     type="text"
                     placeholder="Search by waybill no."
@@ -109,7 +117,7 @@ export default function ShipmentPage() {
                 />
             </div>
 
-            <div className="overflow-x-auto">
+            <div className="bg-white rounded-lg shadow overflow-x-auto">
                 <table className="w-full border border-gray-200 border-collapse">
                     <thead className="bg-gray-100">
                         <tr>
@@ -124,7 +132,7 @@ export default function ShipmentPage() {
                     <tbody>
                         {loading && (
                             <tr>
-                                <td colSpan={5} className="text-center py-6">
+                                <td colSpan={5} className="px-4 py-6 text-center">
                                     Loading shipments...
                                 </td>
                             </tr>
@@ -132,7 +140,7 @@ export default function ShipmentPage() {
 
                         {!loading && shipments.length === 0 && (
                             <tr>
-                                <td colSpan={5} className="text-center py-6">
+                                <td colSpan={5} className="px-4 py-6 text-center">
                                     No shipments found.
                                 </td>
                             </tr>
@@ -140,11 +148,11 @@ export default function ShipmentPage() {
 
                         {!loading && shipments.map((shipment) => (
                             <tr key={shipment.id} className="hover:bg-gray-50">
-                                <td className="border px-4 py-2 font-mono">{shipment.waybill}</td>
-                                <td className="border px-4 py-2">{shipment.receiver_name}</td>
-                                <td className="border px-4 py-2">{shipment.receiver_address}</td>
-                                <td className="border px-4 py-2">{shipment.status}</td>
-                                <td className="border px-4 py-2">{new Date(shipment.created_at).toLocaleDateString()}</td>
+                                <td className="border px-4 py-3 font-mono">{shipment.waybill}</td>
+                                <td className="border px-4 py-3">{shipment.receiver_name}</td>
+                                <td className="border px-4 py-3">{shipment.receiver_address}</td>
+                                <td className="border px-4 py-3">{shipment.status}</td>
+                                <td className="border px-4 py-3">{new Date(shipment.created_at).toLocaleDateString()}</td>
                             </tr>
                         ))}
 
